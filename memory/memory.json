@@ -1,27 +1,232 @@
-{
-    "id": 12,
-    "timestamp": "2024-06-19T20:00:00Z",
-    "participants": [
-        "girl"
-    ],
+[
+  {
+    "id": 1,
+    "timestamp": "2024-05-07T17:38:00Z",
+    "participants": ["girl"],
     "intent": "flirting",
     "emotion": "playful",
     "messages": [
-        {
-            "speaker":"girl",
-            "text":"wyd"
-        },
-        {
-            "speaker":"duke",
-            "text":"js got home"
-        },
-        {
-            "speaker":"girl",
-            "text":"come over"
-        },
-        {
-            "speaker":"duke",
-            "text":"bett"
-        }
+      {
+        "speaker": "girl",
+        "text": "thank you, thats actually really sweet"
+      },
+      {
+        "speaker": "duke",
+        "text": "i need that around me fr"
+      },
+      {
+        "speaker": "duke",
+        "text": "like tom needs jerry"
+      },
+      {
+        "speaker": "girl",
+        "text": "lmaooo thats actually funny"
+      },
+      {
+        "speaker": "girl",
+        "text": "bet then, what do u study"
+      }
     ]
-}
+  },
+  {
+    "id": 2,
+    "timestamp": "2024-06-18T21:10:00Z",
+    "participants": ["girl"],
+    "intent": "teasing",
+    "emotion": "confident",
+    "messages": [
+      {
+        "speaker": "girl",
+        "text": "id love to keep you company one day"
+      },
+      {
+        "speaker": "duke",
+        "text": "careful, i might actually hold you to that"
+      },
+      {
+        "speaker": "girl",
+        "text": "guess ill have to be careful what i say then"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "timestamp": "2024-06-22T19:30:00Z",
+    "participants": ["girl"],
+    "intent": "getting_to_know",
+    "emotion": "curious",
+    "messages": [
+      {
+        "speaker": "girl",
+        "text": "im studying healthcare administration"
+      },
+      {
+        "speaker": "duke",
+        "text": "damn you tryna run the whole hospital or what"
+      },
+      {
+        "speaker": "girl",
+        "text": "hell yea thats the plan"
+      },
+      {
+        "speaker": "duke",
+        "text": "i respect that, i can tell you actually got goals"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "timestamp": "2024-07-02T20:15:00Z",
+    "participants": ["girl"],
+    "intent": "planning",
+    "emotion": "playful",
+    "messages": [
+      {
+        "speaker": "girl",
+        "text": "im only gonna be in town for the weekend"
+      },
+      {
+        "speaker": "duke",
+        "text": "mm lets make one of those days count then"
+      },
+      {
+        "speaker": "girl",
+        "text": "you making plans already"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "timestamp": "2024-07-08T22:50:00Z",
+    "participants": ["girl"],
+    "intent": "banter",
+    "emotion": "playful",
+    "messages": [
+      {
+        "speaker": "girl",
+        "text": "you were close, it is adorable"
+      },
+      {
+        "speaker": "duke",
+        "text": "cmon i wont find this energy anywhere else"
+      },
+      {
+        "speaker": "duke",
+        "text": "i need that around me fr"
+      },
+      {
+        "speaker": "girl",
+        "text": "you are so dramatic"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "timestamp": "2024-07-11T14:00:00Z",
+    "participants": ["girl"],
+    "intent": "reconnect",
+    "emotion": "casual",
+    "messages": [
+      {
+        "speaker": "duke",
+        "text": "you remember us meeting last week or am i trippin"
+      },
+      {
+        "speaker": "girl",
+        "text": "yeaa i remember"
+      },
+      {
+        "speaker": "duke",
+        "text": "good, thought i imagined the whole interaction for a sec"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "timestamp": "2024-07-13T18:30:00Z",
+    "participants": ["girl"],
+    "intent": "compliment",
+    "emotion": "genuine",
+    "messages": [
+      {
+        "speaker": "duke",
+        "text": "ngl from the little we talked you seem like good energy"
+      },
+      {
+        "speaker": "girl",
+        "text": "aww thank you"
+      },
+      {
+        "speaker": "duke",
+        "text": "nah im serious, thats kinda rare these days"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "timestamp": "2024-07-20T15:00:00Z",
+    "participants": ["girl"],
+    "intent": "playful_rejection",
+    "emotion": "lighthearted",
+    "messages": [
+      {
+        "speaker": "girl",
+        "text": "im not really looking for anything right now"
+      },
+      {
+        "speaker": "duke",
+        "text": "i completely respect that"
+      },
+      {
+        "speaker": "duke",
+        "text": "but a girl like you aint easy to come across, dont send me back out there"
+      },
+      {
+        "speaker": "girl",
+        "text": "that made me giggle, thats actually cute"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "timestamp": "2024-07-25T17:20:00Z",
+    "participants": ["girl"],
+    "intent": "checking_in",
+    "emotion": "casual",
+    "messages": [
+      {
+        "speaker": "duke",
+        "text": "howd you end up spending your 4th then"
+      },
+      {
+        "speaker": "girl",
+        "text": "went to the lake w some friends then watched fireworks"
+      },
+      {
+        "speaker": "duke",
+        "text": "sounds like i missed out lowkey"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "timestamp": "2024-08-01T13:15:00Z",
+    "participants": ["girl"],
+    "intent": "banter",
+    "emotion": "sarcastic",
+    "messages": [
+      {
+        "speaker": "girl",
+        "text": "go to sleep"
+      },
+      {
+        "speaker": "duke",
+        "text": "go shower first then ill think about it"
+      },
+      {
+        "speaker": "girl",
+        "text": "child anyways"
+      }
+    ]
+  }
+]

@@ -1,3 +1,5 @@
+#emb.py
+
 from sentence_transformers import SentenceTransformer
 import os
 import json
@@ -10,69 +12,76 @@ embedder = SentenceTransformer(
     "sentence-transformers/all-MiniLM-L6-v2"
 )
 
-# ----------------------------
-# Load Memory
-# ----------------------------
-
 MEMORY_PATH = "./memory"
-
-memory_store = []
 embeddings = []
 
-for filename in os.listdir(MEMORY_PATH):
+def load_memory():
+    # ----------------------------
+    # Load Memory
+    # ----------------------------
 
-    if not filename.endswith(".json"):
-        continue
+    memory_store = []
+    
 
-    file_path = os.path.join(MEMORY_PATH, filename)
+    for filename in os.listdir(MEMORY_PATH):
 
-    with open(file_path, "r", encoding="utf-8") as file:
+        if not filename.endswith(".json"):
+            continue
 
-        data = json.load(file)
+        file_path = os.path.join(MEMORY_PATH, filename)
 
-        conversation = []
+        with open(file_path, "r", encoding="utf-8") as file:
 
-        for message in data["messages"]:
-            conversation.append(
-                f'{message["speaker"]}: {message["text"]}'
+            data = json.load(file)
+
+            conversation = []
+
+            for message in data["messages"]:
+                conversation.append(
+                    f'{message["speaker"]}: {message["text"]}'
+                )
+
+            conversation = "\n".join(conversation)
+
+            memory_store.append(
+                {
+                    "conversation": conversation,
+                    "participant": data.get("participant", "unknown"),
+                    "intent": data.get("intent", "unknown"),
+                    "timestamp": data.get("timestamp", "unknown"),
+                }
             )
 
-        conversation = "\n".join(conversation)
 
-        memory_store.append(
-            {
-                "conversation": conversation,
-                "participant": data.get("participant", "unknown"),
-                "intent": data.get("intent", "unknown"),
-                "timestamp": data.get("timestamp", "unknown"),
-            }
-        )
+    # ----------------------------
+    # Build Embeddings
+    # ----------------------------
 
+    with torch.no_grad():
 
-# ----------------------------
-# Build Embeddings
-# ----------------------------
+        for memory in memory_store:
 
-with torch.no_grad():
+            embedding = embedder.encode(
+                memory["conversation"],
+                convert_to_numpy=True
+            )
 
-    for memory in memory_store:
+            embeddings.append(embedding)
 
-        embedding = embedder.encode(
-            memory["conversation"],
-            convert_to_numpy=True
-        )
+    return memory_store
 
-        embeddings.append(embedding)
-
-embedding_matrix = np.vstack(embeddings).astype("float32")
+    
+def build_index(embeddings):
+    embedding_matrix = np.vstack(embeddings).astype("float32")
 
 
-# ----------------------------
-# Build FAISS
-# ----------------------------
+    # ----------------------------
+    # Build FAISS
+    # ----------------------------
 
-dimension = embedding_matrix.shape[1]
+    dimension = embedding_matrix.shape[1]
 
-index = faiss.IndexFlatL2(dimension)
+    index = faiss.IndexFlatL2(dimension)
 
-index.add(embedding_matrix)
+    index.add(embedding_matrix)
+    return index

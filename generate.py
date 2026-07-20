@@ -1,6 +1,8 @@
+#generate.py
+
 from transformers import pipeline
 import torch
-from emb import index, memory_store, embedder
+from emb import build_index, load_memory embedder
 
 
 generator = pipeline(
@@ -8,16 +10,17 @@ generator = pipeline(
     model="TinyLlama/TinyLlama-1.1B-Chat-v1.0",
 )
 
-# ----------------------------
-# Search
-# ----------------------------
+memory_store = load_memory()
+index = build_index()
 
-def search(query: Query):
+
+
+def search(query):
 
     with torch.no_grad():
 
         query_vector = embedder.encode(
-            query.msg,
+            query,
             convert_to_numpy=True
         )
 
@@ -46,35 +49,9 @@ def search(query: Query):
         for memory in retrieved_memories
     )
 
-    prompt = f"""
-    You are imitating my texting style.
+    
 
-    Rules:
-    - Never copy messages word for word.
-    - Learn my tone from retrieved conversations.
-    - Prefer my slang naturally.
-    - Keep replies concise.
-    - Match my pacing.
-    - Sound human.
-    - Improve weak replies while preserving my personality.
-
-    Retrieved Conversations:
-
-    {context}
-
-    Current Message:
-
-    {query.msg}
-
-    Your Reply:
-    """
-
-    response = generator(
-        prompt,
-        max_new_tokens=80,
-        temperature=0.7,
-        do_sample=True,
-    )
+    response = prompt(context, query)
 
     generated = response[0]["generated_text"]
 
@@ -83,15 +60,25 @@ def search(query: Query):
     # Store the interaction
     memory_store.append(
         {
-            "conversation": f"User: {query.msg}\nBot: {reply}",
+            "conversation": f"User: {query}\nBot: {reply}",
             "participant": "unknown",
             "intent": "generated",
             "timestamp": None,
         }
     )
 
+    for conv in memory_store["conversation"]:
+        embedding = embedder.encode(
+            conv,
+            convert_to_numpy=True
+        ).astype("float32")
+
+        index.add(embedding.reshape(1, -1))
+
+    save_memory(memory_store)
+
     return {
-        "message": query.msg,
+        "message": query,
         "reply": reply,
         "retrieved": len(retrieved_memories),
     }

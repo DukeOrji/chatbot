@@ -1,9 +1,8 @@
-
+#main.py
 from pydantic import BaseModel
 from generate import search
 
-class Query(BaseModel):
-    msg: str
+
 
 
 if __name__ == "__main__":

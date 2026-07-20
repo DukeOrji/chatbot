@@ -1,0 +1,27 @@
+{
+    "id": 12,
+    "timestamp": "2024-06-19T20:00:00Z",
+    "participants": [
+        "girl"
+    ],
+    "intent": "flirting",
+    "emotion": "playful",
+    "messages": [
+        {
+            "speaker":"girl",
+            "text":"wyd"
+        },
+        {
+            "speaker":"duke",
+            "text":"js got home"
+        },
+        {
+            "speaker":"girl",
+            "text":"come over"
+        },
+        {
+            "speaker":"duke",
+            "text":"bett"
+        }
+    ]
+}

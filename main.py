@@ -1,20 +1,16 @@
 #main.py
-from pydantic import BaseModel
 from generate import search
-
 
 
 
 if __name__ == "__main__":
 
     while True:
-        msg = input("\nYou: ")
+        query = input("\nUSER:: ")
 
-        if msg.lower() in {"quit", "exit"}:
+        if query.lower() in {"quit", "stop", "gtfo", "close"}:
             break
-
-        query = Query(msg=msg)
-
+        
         result = search(query)
 
-        print(f"\nBot: {result['reply']}")
+        print(f"AI:: {result['reply']}")
